@@ -74,18 +74,6 @@ export class FuseShortcutsComponent implements OnInit, AfterViewInit, OnDestroy
         {
             this.shortcutItems = JSON.parse(this._cookieService.get('FUSE2.shortcuts'));
         }
-        else
-        {
-            // User's shortcut items
-            this.shortcutItems = [
-                {
-                    title: 'Calendar',
-                    type : 'item',
-                    icon : 'today',
-                    url  : '/apps/calendar'
-                }
-            ];
-        }
 
     }
 
