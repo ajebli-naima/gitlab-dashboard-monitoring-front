@@ -24,7 +24,7 @@ import {ScrumboardRoutingModule} from './scrumboard-routing.module';
 import {ScrumboardComponent} from './scrumboard.component';
 import {ScrumboardBoardComponent} from './board/board.component';
 import {ScrumboardService} from './scrumboard.service';
-import {MatSelectModule, MatStepperModule} from '@angular/material';
+import {MatCardModule, MatSelectModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -57,7 +57,8 @@ import {MatSelectModule, MatStepperModule} from '@angular/material';
         FuseSharedModule,
         FuseConfirmDialogModule,
         FuseMaterialColorPickerModule,
-        ScrumboardRoutingModule
+        ScrumboardRoutingModule,
+        MatCardModule
     ],
     providers: [
         ScrumboardService,
