@@ -21,35 +21,15 @@ import {FuseConfirmDialogModule, FuseMaterialColorPickerModule} from '@fuse/comp
 
 
 import {ScrumboardRoutingModule} from './scrumboard-routing.module';
-import {ScrumboardComponent} from "./scrumboard.component";
-import {ScrumboardBoardComponent} from "./board/board.component";
-import {ScrumboardBoardCardComponent} from "./board/list/card/card.component";
-import {ScrumboardBoardListComponent} from "./board/list/list.component";
-import {ScrumboardBoardAddCardComponent} from "./board/list/add-card/add-card.component";
-import {ScrumboardBoardAddListComponent} from "./board/add-list/add-list.component";
-import {ScrumboardCardDialogComponent} from "./board/dialogs/card/card.component";
-import {ScrumboardLabelSelectorComponent} from "./board/dialogs/card/label-selector/label-selector.component";
-import {ScrumboardEditBoardNameComponent} from "./board/edit-board-name/edit-board-name.component";
-import {ScrumboardBoardSettingsSidenavComponent} from "./board/sidenavs/settings/settings.component";
-import {ScrumboardBoardColorSelectorComponent} from "./board/sidenavs/settings/board-color-selector/board-color-selector.component";
-import {ScrumboardBoardEditListNameComponent} from "./board/list/edit-list-name/edit-list-name.component";
-import {BoardResolve, ScrumboardService} from "./scrumboard.service";
-import {MatSelectModule, MatStepperModule} from "@angular/material";
+import {ScrumboardComponent} from './scrumboard.component';
+import {ScrumboardBoardComponent} from './board/board.component';
+import {ScrumboardService} from './scrumboard.service';
+import {MatSelectModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
     declarations: [
         ScrumboardComponent,
         ScrumboardBoardComponent,
-        ScrumboardBoardListComponent,
-        ScrumboardBoardCardComponent,
-        ScrumboardBoardEditListNameComponent,
-        ScrumboardBoardAddCardComponent,
-        ScrumboardBoardAddListComponent,
-        ScrumboardCardDialogComponent,
-        ScrumboardLabelSelectorComponent,
-        ScrumboardEditBoardNameComponent,
-        ScrumboardBoardSettingsSidenavComponent,
-        ScrumboardBoardColorSelectorComponent
     ],
     imports: [
         MatButtonModule,
@@ -81,9 +61,7 @@ import {MatSelectModule, MatStepperModule} from "@angular/material";
     ],
     providers: [
         ScrumboardService,
-        BoardResolve
     ],
-    entryComponents: [ScrumboardCardDialogComponent]
 })
 export class ScrumboardModule {
 }

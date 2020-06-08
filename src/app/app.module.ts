@@ -17,8 +17,6 @@ import {fuseConfig} from 'app/fuse-config';
 import {AppComponent} from 'app/app.component';
 import {LayoutModule} from 'app/layout/layout.module';
 import {AppRoutingModule} from './app-routing.module';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {FakeDbService} from './fake-db/fake-db.service';
 
 @NgModule({
     declarations: [
@@ -30,10 +28,6 @@ import {FakeDbService} from './fake-db/fake-db.service';
         HttpClientModule,
 
         TranslateModule.forRoot(),
-        InMemoryWebApiModule.forRoot(FakeDbService, {
-            delay: 0,
-            passThruUnknownUrl: true
-        }),
 
         // Material moment date module
         MatMomentDateModule,

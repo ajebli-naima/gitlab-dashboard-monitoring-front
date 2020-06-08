@@ -3,7 +3,7 @@
 
     <div class="header pt-44 pt-md-88" fxLayout="row" fxLayoutAlign="center center" fxFlex="0 0 auto"
          [@animate]="{value:'*',params:{delay:'100ms'}}">
-        <h1>Scrumboard App</h1>
+        <h1>Leyton Applications</h1>
     </div>
 
     <!-- BOARD LIST -->
@@ -11,25 +11,22 @@
          [@animateStagger]="{value:'50'}">
 
         <!-- BOARD -->
-        <div class="board-list-item" *ngFor="let board of boards"
-             [routerLink]="'/api/boards/'+board.id+'/'+board.uri"
+        <div class="board-list-item" *ngFor="let app of applications"
+             [routerLink]="'/boards/'+app.id"
              fxLayout="column" fxLayoutAlign="center center"
              [@animate]="{value:'*',params:{y:'100%'}}">
-            <mat-icon class="s-56">assessment</mat-icon>
-            <div class="board-name">{{board.name}}</div>
+            <img [src]="app.photo" style="width: 50px;height: 50px;">
+            <div class="board-name">{{app.nameApplication}}</div>
         </div>
         <!-- / BOARD -->
 
         <!-- NEW BOARD BUTTON -->
         <div class="board-list-item add-new-board" fxLayout="column" fxLayoutAlign="center center"
-             (click)="newBoard()"
+             (click)="newApplication()"
              [@animate]="{value:'*',params:{y:'100%'}}">
             <mat-icon class="s-56">add_circle</mat-icon>
-            <div class="board-name">Add new board</div>
+            <div class="board-name">Add new application</div>
         </div>
-        <!-- / NEW BOARD BUTTON -->
-
     </div>
-    <!-- / BOARD LIST -->
 </div>
 <!-- / BOARDS -->

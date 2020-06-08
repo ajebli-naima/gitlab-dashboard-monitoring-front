@@ -9,7 +9,7 @@ const routes: Routes = [
         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)
     },
     {
-        path: 'api',
+        path: '',
         loadChildren: () => import('./pages/scrumboard/scrumboard.module').then(m => m.ScrumboardModule)
     },
     {

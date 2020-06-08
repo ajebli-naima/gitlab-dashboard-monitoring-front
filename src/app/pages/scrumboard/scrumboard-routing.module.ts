@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ScrumboardComponent} from "./scrumboard.component";
-import {BoardResolve, ScrumboardService} from "./scrumboard.service";
-import {ScrumboardBoardComponent} from "./board/board.component";
+import {ScrumboardComponent} from './scrumboard.component';
+import {ScrumboardService} from './scrumboard.service';
+import {ScrumboardBoardComponent} from './board/board.component';
 
 
 const routes: Routes = [
@@ -12,16 +12,10 @@ const routes: Routes = [
             {
                 path: 'boards',
                 component: ScrumboardComponent,
-                resolve: {
-                    scrumboard: ScrumboardService
-                }
             },
             {
-                path: 'boards/:boardId/:boardUri',
+                path: 'boards/:boardId',
                 component: ScrumboardBoardComponent,
-                resolve: {
-                    board: BoardResolve
-                }
             },
             {
                 path: '**',

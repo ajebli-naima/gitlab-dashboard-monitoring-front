@@ -26,22 +26,6 @@
         }
     }
 
-    // Add list
-    scrumboard-board-add-list {
-
-        .new-list {
-            background: map-get($background, app-bar);
-
-            .new-list-form {
-
-                > input {
-                    background: map-get($background, app-bar);
-                    color: map-get($foreground, text);
-                }
-            }
-        }
-    }
-
     // Board
     scrumboard-board {
 

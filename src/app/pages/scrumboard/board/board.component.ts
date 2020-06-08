@@ -1,123 +1,108 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { fuseAnimations } from '@fuse/animations';
+import {fuseAnimations} from '@fuse/animations';
 import {ScrumboardService} from '../scrumboard.service';
-import {List} from "../list.model";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Board} from '../board.model';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
-    selector     : 'scrumboard-board',
-    templateUrl  : './board.component.html',
-    styleUrls    : ['./board.component.scss'],
+    selector: 'scrumboard-board',
+    templateUrl: './board.component.html',
+    styleUrls: ['./board.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class ScrumboardBoardComponent implements OnInit, OnDestroy
-{
-    board: any;
+export class ScrumboardBoardComponent implements OnInit, OnDestroy {
 
-    // Private
-    private _unsubscribeAll: Subject<any>;
+    userFile;
+    thumbnail: any;
+
+    reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    edit = false;
+
+    board: Board;
+
     form: FormGroup;
 
     constructor(
+        private sanitizer: DomSanitizer,
         private _activatedRoute: ActivatedRoute,
-        private _location: Location,
         private _scrumboardService: ScrumboardService,
-        private formBuilder: FormBuilder
-    )
-    {
-        // Set the private defaults
-        this._unsubscribeAll = new Subject();
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute, private router: Router
+    ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(params => {
+            const id = params.get('boardId');
 
-    /**
-     * On init
-     */
-    ngOnInit(): void
-    {
-        this._scrumboardService.onBoardChanged
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(board => {
-                this.board = board;
-            });
-
-
-        this.form = this.formBuilder.group({
-            company   : [
-                {
-                    value   : 'Google',
-                    disabled: true
-                }, Validators.required
-            ],
-            firstName : ['', Validators.required],
-            lastName  : ['', Validators.required],
-            address   : ['', Validators.required],
-            address2  : ['', Validators.required],
-            city      : ['', Validators.required],
-            state     : ['', Validators.required],
-            postalCode: ['', [Validators.required, Validators.maxLength(5)]],
-            country   : ['', Validators.required]
+            if (id === 'new') {
+                this.edit = true;
+                this.board = new Board();
+                this.constructorForm();
+            } else {
+                this._scrumboardService.getApplication(id).subscribe(application => {
+                    this.board = application;
+                    const objectURL = 'data:image/jpeg;base64,' + application.photo;
+                    this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                });
+            }
         });
     }
 
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+    ngOnDestroy(): void {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * On list add
-     *
-     * @param newListName
-     */
-    onListAdd(newListName): void
-    {
-        if ( newListName === '' )
-        {
-            return;
+    toogleMode(): void {
+        this.edit = true;
+        this.constructorForm();
+    }
+
+    save(): void {
+        const id = this.board.id;
+        this.board = this.form.value;
+        this.board.id = id;
+
+        this._scrumboardService.uploadPictureApplication(this.form.value, this.userFile).subscribe(data => {
+            this.router.navigate(['/boards']);
+        });
+    }
+
+    constructorForm(): void {
+        this.form = this.formBuilder.group({
+            nameApplication: [this.board.nameApplication,
+                [Validators.required]],
+            urlGitlab: [this.board.urlGitlab, [Validators.required, Validators.pattern(this.reg)]],
+            urlJenkins: [this.board.urlJenkins, [Validators.pattern(this.reg)]],
+            urlSonar: [this.board.urlSonar, Validators.pattern(this.reg)],
+            urlGrafana: [this.board.urlGrafana, Validators.pattern(this.reg)],
+            urlGraylog: [this.board.urlGraylog, Validators.pattern(this.reg)],
+            urlDeployment: [this.board.urlDeployment, Validators.pattern(this.reg)],
+        });
+    }
+
+    onFileChanged($event: Event): void {
+        if ($event.target['files'].length > 0) {
+            const file = event.target['files'][0];
+            this.userFile = file;
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (_event) => {
+                this.thumbnail = reader.result;
+            };
         }
-
-        this._scrumboardService.addList(new List({name: newListName}));
     }
 
-    /**
-     * On board name changed
-     *
-     * @param newName
-     */
-    onBoardNameChanged(newName): void
-    {
-        this._scrumboardService.updateBoard();
-        this._location.go('/api/boards/' + this.board.id + '/' + this.board.uri);
+    cancel(): void {
+        if (this.board.id) {
+            this.edit = false;
+        } else {
+            this.router.navigate(['/boards']);
+        }
     }
-
-    /**
-     * On drop
-     *
-     * @param ev
-     */
-    onDrop(ev): void
-    {
-        this._scrumboardService.updateBoard();
-    }
-
 }

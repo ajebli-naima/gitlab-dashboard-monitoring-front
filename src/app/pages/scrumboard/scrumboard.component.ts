@@ -1,81 +1,60 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { fuseAnimations } from '@fuse/animations';
+import {fuseAnimations} from '@fuse/animations';
 import {ScrumboardService} from './scrumboard.service';
-import {Board} from './board.model';
-
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
-    selector     : 'scrumboard',
-    templateUrl  : './scrumboard.component.html',
-    styleUrls    : ['./scrumboard.component.scss'],
+    selector: 'scrumboard',
+    templateUrl: './scrumboard.component.html',
+    styleUrls: ['./scrumboard.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations
 })
-export class ScrumboardComponent implements OnInit, OnDestroy
-{
-    boards: any[];
+export class ScrumboardComponent implements OnInit, OnDestroy {
+    applications: any;
 
-    // Private
-    private _unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {Router} _router
-     * @param {ScrumboardService} _scrumboardService
-     */
     constructor(
         private  _router: Router,
-        private _scrumboardService: ScrumboardService
-    )
-    {
-        // Set the private defaults
-        this._unsubscribeAll = new Subject();
+        private _scrumboardService: ScrumboardService, private sanitizer: DomSanitizer,
+    ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
-    ngOnInit(): void
-    {
-        this._scrumboardService.onBoardsChanged
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(boards => {
-                this.boards = boards;
-            });
+    ngOnInit(): void {
+        this.getAllApplication();
     }
 
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void
-    {
-        // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+
+    getAllApplication(): void {
+        this.applications = null;
+        this._scrumboardService.getAllApplication().subscribe(applications => {
+                this.applications = applications
+
+                this.applications.map((obj) => {
+                    obj.photo = this.convert(obj.photo);
+                    // or via brackets
+                    // obj['total'] = 2;
+                    return obj;
+                });
+            }
+        )
+        ;
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
+    ngOnDestroy(): void {
 
-    /**
-     * New board
-     */
-    newBoard(): void
-    {
-        const newBoard = new Board({});
-        this._scrumboardService.createNewBoard(newBoard).then(() => {
-            this._router.navigate(['/api/boards/' + newBoard.id + '/' + newBoard.uri]);
-        });
     }
+
+    newApplication(): void {
+        this._router.navigate(['/boards/' + 'new']);
+    }
+
+    convert(bytes): any {
+        const objectURL = 'data:image/jpeg;base64,' + bytes;
+        return this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    }
+
 }
