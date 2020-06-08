@@ -127,56 +127,23 @@ scrumboard-board {
             }
         }
     }
-}
 
-:host {
-
-    .content {
-
-        form {
-            width: 100%;
-            max-width: 800px !important;
-        }
-
-        .form-errors-model {
-            flex: 1;
-
-            code {
-                background: none !important;
-            }
-        }
-
-        .horizontal-stepper-wrapper,
-        .vertical-stepper-wrapper {
-            max-width: 800px;
-        }
+    .label-file {
+        cursor: pointer;
+        color: #00b1ca;
+        font-weight: bold;
     }
-}
-
-
-.mb-24 {
-    margin-bottom: 5px !important;
-}
-
-h2{
-    margin:0px;
-}
-
-
-scrumboard-edit-board-name {
-    display: block !important;
-
-    .board-name {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        font-size: 15px;
-        font-weight: 600;
-        flex: 0 0 auto !important;
+    .label-file:hover {
+        color: #25a5c4;
     }
+
+    .input-file {
+        display: none;
+    }
+
 }
 
 #academy-courses {
-
     .header {
         position: relative;
         flex: 1 0 auto;
@@ -288,6 +255,8 @@ scrumboard-edit-board-name {
                         height: 64px !important;
                         min-height: 64px !important;
                         max-height: 64px !important;
+                        background: #1a237e;
+                        color: white;
 
                         &.web-bg {
                             background: mat-color($mat-blue, 500);
@@ -363,8 +332,3 @@ scrumboard-edit-board-name {
 .input-file {
     display: none;
 }
-
-.bg-color{
-    background: slategray;
-}
-
