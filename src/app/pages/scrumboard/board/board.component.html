@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-    <div id="board">
+    <div id="board" class="amber-50">
         <div class="header p-16 p-md-24" [ngClass]="'fuse-navy'" fxLayout="column">
 
             <div class="header-content" fxLayout="row wrap" fxLayoutAlign="" fxFlex="1 0 auto">
@@ -57,7 +57,7 @@
                           fxLayout="column"
                           fxLayoutAlign="start"
                           fxFlex="1 0 auto" name="form" [formGroup]="form"
-                    style="padding-top: 2px !important;">
+                          style="padding-top: 2px !important;">
 
                         <div class="h2 mb-24">Application Info</div>
 
@@ -130,14 +130,14 @@
 
                             <mat-form-field appearance="outline" fxFlex="100">
                                 <mat-label>Deployment Details URL</mat-label>
-                                <input type = "url" matInput formControlName="urlDeployment">
+                                <input type="url" matInput formControlName="urlDeployment">
                                 <mat-icon matSuffix class="secondary-text">link</mat-icon>
                                 <mat-error>Url required!</mat-error>
                             </mat-form-field>
 
                         </div>
                         <div style="margin-left: 10px">
-                            <label for="file" accept="image/*" class="label-file" >Choose a logo</label>
+                            <label for="file" accept="image/*" class="label-file">Choose a logo</label>
                             <input id="file" class="input-file" type="file" (change)="onFileChanged($event)">
                         </div>
 
@@ -151,8 +151,9 @@
                                 <span>Cancel</span>
                             </button>
 
-                            <button [disabled]="!form.valid"  type="submit" mat-raised-button class="header-boards-button"
-                                     class="submit-button" color="accent"
+                            <button [disabled]="!form.valid" type="submit" mat-raised-button
+                                    class="header-boards-button"
+                                    class="submit-button" color="accent"
                                     aria-label="boards button" aria-label="Save" style="margin-left: 5px">
                                 <mat-icon class="mr-8">check</mat-icon>
                                 <span>Save</span>
@@ -171,21 +172,24 @@
                                 <div fxLayout="column" fxLayoutAlign="center">
 
 
-
-                                    <div class="courses" fxLayout="row wrap" fxLayoutAlign="center" [@animateStagger]="{value:'60'}">
-                                        <div *ngIf="this.board?.urlGitlab" class="course"  fxFlex="100" fxFlex.gt-xs="50"
-                                             fxFlex.gt-sm="33"  [@animate]="{value:'*',params:{y:'100%'}}">
+                                    <div class="courses" fxLayout="row wrap" fxLayoutAlign="center"
+                                         [@animateStagger]="{value:'60'}">
+                                        <div *ngIf="this.board?.urlGitlab" class="course" fxFlex="100" fxFlex.gt-xs="50"
+                                             fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
                                             <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
-                                                <div class="header bg-color" fxLayout="row" fxLayoutAlign="center center">
+                                                <div class="header bg-color" fxLayout="row"
+                                                     fxLayoutAlign="center center">
                                                     <div class="category" fxFlex>
                                                         Gitlab
                                                     </div>
-                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center"><img
+                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                                        <img
                                                             src="../../../../assets/icons/card/gitlab.png" height="50"
                                                             width="50"/>
                                                     </div>
                                                 </div>
-                                                <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                                                <div class="content" fxLayout="column" fxLayoutAlign="center center"
+                                                     fxFlex="1 1 auto">
                                                     GitLab is a web-based DevOps lifecycle tool that provides
                                                     a Git-repository manager providing issue-tracking and continuous
                                                     integration/continuous deployment pipeline features...
@@ -201,22 +205,26 @@
                                         </div>
 
 
-                                        <div *ngIf="this.board?.urlGrafana" class="course"  fxFlex="100" fxFlex.gt-xs="50"
-                                             fxFlex.gt-sm="33"  [@animate]="{value:'*',params:{y:'100%'}}">
+                                        <div *ngIf="this.board?.urlGrafana" class="course" fxFlex="100"
+                                             fxFlex.gt-xs="50"
+                                             fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
                                             <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
-                                                <div class="header bg-color" fxLayout="row" fxLayoutAlign="center center">
+                                                <div class="header bg-color" fxLayout="row"
+                                                     fxLayoutAlign="center center">
                                                     <div class="category" fxFlex>
                                                         Grafana
                                                     </div>
-                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center"><img
-                                                        src="../../../../assets/icons/card/grafna.png" height="50"
-                                                        width="50"/>
+                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                                        <img
+                                                            src="../../../../assets/icons/card/grafna.png" height="50"
+                                                            width="50"/>
                                                     </div>
                                                 </div>
 
-                                                <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                                                <div class="content" fxLayout="column" fxLayoutAlign="center center"
+                                                     fxFlex="1 1 auto">
                                                     Grafana is an open source platform for
-                                                        monitoring, analysis and visualization of system data in
+                                                    monitoring, analysis and visualization of system data in
                                                     real time, dynamic Dashboards, explore Metrics, alerting...
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
@@ -228,20 +236,25 @@
                                             </div>
                                         </div>
 
-                                        <div *ngIf="this.board?.urlJenkins" class="course"  fxFlex="100" fxFlex.gt-xs="50"
-                                             fxFlex.gt-sm="33"  [@animate]="{value:'*',params:{y:'100%'}}">
+                                        <div *ngIf="this.board?.urlJenkins" class="course" fxFlex="100"
+                                             fxFlex.gt-xs="50"
+                                             fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
                                             <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
-                                                <div class="header bg-color" fxLayout="row" fxLayoutAlign="center center">
+                                                <div class="header bg-color" fxLayout="row"
+                                                     fxLayoutAlign="center center">
                                                     <div class="category" fxFlex>
                                                         Jenkins
                                                     </div>
-                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center"><img
-                                                        src="../../../../assets/icons/card/jenkins.png" height="40"
-                                                        width="40"/>
+                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                                        <img
+                                                            src="../../../../assets/icons/card/jenkins.png" height="40"
+                                                            width="40"/>
                                                     </div>
                                                 </div>
-                                                <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
-                                                    Jenkins offers a simple way to set up a continuous integration and continuous delivery
+                                                <div class="content" fxLayout="column" fxLayoutAlign="center center"
+                                                     fxFlex="1 1 auto">
+                                                    Jenkins offers a simple way to set up a continuous integration and
+                                                    continuous delivery
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
                                                     <a mat-button color="accent"
@@ -253,20 +266,24 @@
                                         </div>
 
 
-                                        <div *ngIf="this.board?.urlSonar" class="course"  fxFlex="100" fxFlex.gt-xs="50"
-                                             fxFlex.gt-sm="33"  [@animate]="{value:'*',params:{y:'100%'}}">
+                                        <div *ngIf="this.board?.urlSonar" class="course" fxFlex="100" fxFlex.gt-xs="50"
+                                             fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
                                             <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
-                                                <div class="header bg-color" fxLayout="row" fxLayoutAlign="center center">
+                                                <div class="header bg-color" fxLayout="row"
+                                                     fxLayoutAlign="center center">
                                                     <div class="category" fxFlex>
                                                         Sonar
                                                     </div>
-                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center"><img
-                                                        src="../../../../assets/icons/card/sonar.png" height="50"
-                                                        width="50"/>
+                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                                        <img
+                                                            src="../../../../assets/icons/card/sonar.png" height="50"
+                                                            width="50"/>
                                                     </div>
                                                 </div>
-                                                <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
-                                                    Jenkins offers a simple way to set up a continuous integration and continuous delivery
+                                                <div class="content" fxLayout="column" fxLayoutAlign="center center"
+                                                     fxFlex="1 1 auto">
+                                                    Jenkins offers a simple way to set up a continuous integration and
+                                                    continuous delivery
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
                                                     <a mat-button color="accent"
@@ -277,22 +294,27 @@
                                             </div>
                                         </div>
 
-                                        <div *ngIf="this.board?.urlGraylog" class="course"  fxFlex="100" fxFlex.gt-xs="50"
-                                             fxFlex.gt-sm="33"  [@animate]="{value:'*',params:{y:'100%'}}">
+                                        <div *ngIf="this.board?.urlGraylog" class="course" fxFlex="100"
+                                             fxFlex.gt-xs="50"
+                                             fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
                                             <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
-                                                <div class="header bg-color" fxLayout="row" fxLayoutAlign="center center">
+                                                <div class="header bg-color" fxLayout="row"
+                                                     fxLayoutAlign="center center">
                                                     <div class="category" fxFlex>
                                                         Graylog
                                                     </div>
-                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center"><img
-                                                        src="../../../../assets/icons/card/graylog.png" height="50"
-                                                        width="50"/>
+                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                                        <img
+                                                            src="../../../../assets/icons/card/graylog.png" height="50"
+                                                            width="50"/>
                                                     </div>
                                                 </div>
-                                                <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                                                <div class="content" fxLayout="column" fxLayoutAlign="center center"
+                                                     fxFlex="1 1 auto">
                                                     Graylog2 is an open-source log management solution. Each message
                                                     is recorded in an Elasticsearch database and a web interface
-                                                    allows you to manage and analyze your logs.                                                </div>
+                                                    allows you to manage and analyze your logs.
+                                                </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
                                                     <a mat-button color="accent"
                                                        [href]="this.board?.urlGraylog" target="_blank">
@@ -303,19 +325,23 @@
                                         </div>
 
 
-                                        <div *ngIf="this.board?.urlDeployment" class="course"  fxFlex="100" fxFlex.gt-xs="50"
-                                             fxFlex.gt-sm="33"  [@animate]="{value:'*',params:{y:'100%'}}">
+                                        <div *ngIf="this.board?.urlDeployment" class="course" fxFlex="100"
+                                             fxFlex.gt-xs="50"
+                                             fxFlex.gt-sm="33" [@animate]="{value:'*',params:{y:'100%'}}">
                                             <div class="course-content" fxLayout="column" fxFlex="1 1 auto">
-                                                <div class="header bg-color" fxLayout="row" fxLayoutAlign="center center">
+                                                <div class="header bg-color" fxLayout="row"
+                                                     fxLayoutAlign="center center">
                                                     <div class="category" fxFlex>
                                                         Deployment Details
                                                     </div>
-                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center"><img
-                                                        src="../../../../assets/icons/card/deploy.png" height="50"
-                                                        width="50"/>
+                                                    <div class="length" fxLayout="row" fxLayoutAlign="center center">
+                                                        <img
+                                                            src="../../../../assets/icons/card/deploy.png" height="50"
+                                                            width="50"/>
                                                     </div>
                                                 </div>
-                                                <div class="content" fxLayout="column" fxLayoutAlign="center center" fxFlex="1 1 auto">
+                                                <div class="content" fxLayout="column" fxLayoutAlign="center center"
+                                                     fxFlex="1 1 auto">
                                                     Deployment Details (Frequency/Failure/Speed)
                                                 </div>
 

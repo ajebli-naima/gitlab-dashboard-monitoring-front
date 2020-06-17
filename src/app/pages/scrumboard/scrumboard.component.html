@@ -1,9 +1,9 @@
 <!-- BOARDS -->
-<div id="boards" class="fuse-navy" fxLayout="column" fxLayoutAlign="start center" fxFlex fusePerfectScrollbar>
+<div id="boards" class="amber-50" fxLayout="column" fxLayoutAlign="start center" fxFlex fusePerfectScrollbar>
 
     <div class="header pt-44 pt-md-88" fxLayout="row" fxLayoutAlign="center center" fxFlex="0 0 auto"
          [@animate]="{value:'*',params:{delay:'100ms'}}">
-        <h1>Leyton Applications</h1>
+        <h1  class="title">Leyton App Monitoring</h1>
     </div>
 
     <!-- BOARD LIST -->
@@ -15,7 +15,7 @@
              [routerLink]="'/boards/'+app.id"
              fxLayout="column" fxLayoutAlign="center center"
              [@animate]="{value:'*',params:{y:'100%'}}">
-            <img [src]="app.photo" style="width: 50px;height: 50px;">
+            <img [src]="app.photo">
             <div class="board-name">{{app.nameApplication}}</div>
         </div>
         <!-- / BOARD -->
@@ -25,7 +25,7 @@
              (click)="newApplication()"
              [@animate]="{value:'*',params:{y:'100%'}}">
             <mat-icon class="s-56">add_circle</mat-icon>
-            <div class="board-name">Add new application</div>
+            <div class="board-name">Add new app</div>
         </div>
     </div>
 </div>
