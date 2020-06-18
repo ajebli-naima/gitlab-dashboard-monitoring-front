@@ -1,6 +1,6 @@
 <mat-sidenav-container>
     <div id="board" class="amber-50">
-        <div class="header p-16 p-md-24" [ngClass]="'fuse-navy'" fxLayout="column">
+        <div class="header p-16 p-md-24 amber-50" fxLayout="column">
 
             <div class="header-content" fxLayout="row wrap" fxLayoutAlign="" fxFlex="1 0 auto">
 
@@ -23,8 +23,8 @@
                      fxFlex="1 0 100%" fxFlex.gt-xs="1 0 auto"
                      fxFlexOrder="1" fxFlexOrder.gt-xs="2">
                     <div class="board-name" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="start center">
-                        <img *ngIf="this.thumbnail" style="width: 35px;height: 35px; margin: 8px"
-                             [src]='thumbnail'/>
+                        <!--<img *ngIf="this.thumbnail" style="width: 35px;height: 35px; margin: 8px"
+                             [src]='thumbnail'/>-->
                         <span *ngIf="this.edit">{{this.form.get('nameApplication').value}}</span>
                         <span *ngIf="!this.edit">{{this.board?.nameApplication}}</span>
                     </div>
@@ -196,7 +196,7 @@
                                                 </div>
 
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                                                    <a mat-button color="accent"
+                                                    <a mat-button color="accent" class="redirect_url"
                                                        [href]="this.board?.urlGitlab" target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
@@ -228,7 +228,7 @@
                                                     real time, dynamic Dashboards, explore Metrics, alerting...
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                                                    <a mat-button color="accent"
+                                                    <a mat-button color="accent" class="redirect_url"
                                                        [href]="this.board?.urlGrafana" target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
@@ -257,7 +257,7 @@
                                                     continuous delivery
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                                                    <a mat-button color="accent"
+                                                    <a mat-button color="accent" class="redirect_url"
                                                        [href]="this.board?.urlJenkins" target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
@@ -286,7 +286,7 @@
                                                     continuous delivery
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                                                    <a mat-button color="accent"
+                                                    <a mat-button color="accent" class="redirect_url"
                                                        [href]="this.board?.urlSonar" target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
@@ -316,7 +316,7 @@
                                                     allows you to manage and analyze your logs.
                                                 </div>
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                                                    <a mat-button color="accent"
+                                                    <a mat-button color="accent" class="redirect_url"
                                                        [href]="this.board?.urlGraylog" target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
@@ -346,7 +346,7 @@
                                                 </div>
 
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
-                                                    <a mat-button color="accent"
+                                                    <a mat-button color="accent" class="redirect_url"
                                                        [href]="this.board?.urlDeployment" target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
