@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                 echo "Build angular - Begin"
                 npm i -s
-                npm run build
+                npm run-script build-prod
                 echo "Build angular - End"
                 '''
             }
