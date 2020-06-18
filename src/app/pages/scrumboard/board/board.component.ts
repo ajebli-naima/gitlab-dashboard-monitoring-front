@@ -20,7 +20,10 @@ export class ScrumboardBoardComponent implements OnInit, OnDestroy {
     userFile;
     thumbnail: any;
 
-    reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    reg = '(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+' +
+        '[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+' +
+        '[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.' +
+        '|(?!www))[a-zA-Z0-9]+\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]+\\.[^\\s]{2,})';
     edit = false;
 
     board: Board;
