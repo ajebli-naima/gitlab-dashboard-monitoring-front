@@ -24,12 +24,14 @@ import {ScrumboardRoutingModule} from './scrumboard-routing.module';
 import {ScrumboardComponent} from './scrumboard.component';
 import {ScrumboardBoardComponent} from './board/board.component';
 import {ScrumboardService} from './scrumboard.service';
-import {MatCardModule, MatSelectModule, MatStepperModule} from '@angular/material';
+import {MatSelectModule, MatStepperModule, MatTabsModule} from '@angular/material';
+import {GitlabComponent} from './gitlab/gitlab.component';
 
 @NgModule({
     declarations: [
         ScrumboardComponent,
         ScrumboardBoardComponent,
+        GitlabComponent,
     ],
     imports: [
         MatButtonModule,
@@ -58,7 +60,7 @@ import {MatCardModule, MatSelectModule, MatStepperModule} from '@angular/materia
         FuseConfirmDialogModule,
         FuseMaterialColorPickerModule,
         ScrumboardRoutingModule,
-        MatCardModule
+        MatTabsModule,
     ],
     providers: [
         ScrumboardService,

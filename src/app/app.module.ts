@@ -17,10 +17,12 @@ import {fuseConfig} from 'app/fuse-config';
 import {AppComponent} from 'app/app.component';
 import {LayoutModule} from 'app/layout/layout.module';
 import {AppRoutingModule} from './app-routing.module';
+import {MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
+import {AppUtils} from "./utils/AppUtils";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,6 +48,10 @@ import {AppRoutingModule} from './app-routing.module';
         // App modules
         LayoutModule,
         AppRoutingModule
+    ],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+        { provide: MAT_DATE_FORMATS, useValue: AppUtils.MY_FORMAT },
     ],
     bootstrap: [
         AppComponent
