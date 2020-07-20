@@ -5,14 +5,12 @@ import {AppUtils} from '../../utils/AppUtils';
 
 @Injectable()
 export class ScrumboardService {
-    boards: any[];
 
     constructor(
         private _httpClient: HttpClient
     ) {
 
     }
-
 
     getAllApplication(): Observable<any> {
         const headers = new HttpHeaders();

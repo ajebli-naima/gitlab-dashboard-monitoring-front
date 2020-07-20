@@ -197,7 +197,9 @@
 
                                                 <div class="footer" fxLayout="row" fxLayoutAlign="center center">
                                                     <a mat-button color="accent" class="redirect_url"
-                                                       [href]="this.board?.urlGitlab" target="_blank">
+
+                                                       [routerLink]="'/gitlab/'+this.board.id"
+                                                       target="_blank">
                                                         <mat-icon title="Open in new tab" class="mr-8">launch</mat-icon>
                                                     </a>
                                                 </div>

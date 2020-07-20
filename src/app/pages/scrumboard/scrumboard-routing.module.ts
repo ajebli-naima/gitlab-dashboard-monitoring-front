@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ScrumboardComponent} from './scrumboard.component';
 import {ScrumboardService} from './scrumboard.service';
 import {ScrumboardBoardComponent} from './board/board.component';
+import {GitlabComponent} from "./gitlab/gitlab.component";
 
 
 const routes: Routes = [
@@ -18,9 +19,13 @@ const routes: Routes = [
                 component: ScrumboardBoardComponent,
             },
             {
+                path: 'gitlab/:projectId',
+                component: GitlabComponent,
+            },
+            {
                 path: '**',
                 redirectTo: 'boards'
-            }
+            },
         ]
     }
 ];
