@@ -103,8 +103,9 @@ export class GitlabComponent implements OnInit {
             this.startDate, this.endDate).subscribe(values => {
 
             this.statistics = values;
-
-            let canvas = <HTMLCanvasElement>document.getElementById("chart2");
+            let canvas = null;
+            canvas = <HTMLCanvasElement>document.getElementById("chart2");
+            this.chart2 = null;
             this.chart2 = new Chart(canvas,
                 {
                     type: 'line',
@@ -152,8 +153,9 @@ export class GitlabComponent implements OnInit {
                 let data = this.generateArray(this.commitsPerProjectAndBranch.commitPerUser, 'canvas');
                 let labels = this.getLabels(data);
                 let values = this.getValues(data);
-                let canvas = <HTMLCanvasElement>document.getElementById("chart1");
-
+                let canvas = null;
+                canvas = <HTMLCanvasElement>document.getElementById("chart1");
+                this.chart1 = null;
                 this.chart1 = new Chart(canvas,
                     {
                         type: 'bar',
