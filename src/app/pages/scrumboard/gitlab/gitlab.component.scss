@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Agency FB Bold";
+    src: url("../../../../assets/font/Agency FB Bold.ttf") format("truetype");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -45,6 +50,21 @@ body {
 #product {
     .header-bul {
         height: 100px;
+        background-color: #1a237e !important;
+    }
+
+    .center {
+        .title-header {
+            min-height: unset !important;
+            height: 50px !important;
+            background-color: #1a237e !important;
+        }
+
+        .link-class {
+            color: white;
+            font-family: 'Agency FB Bold', arial;
+            letter-spacing: 2px
+        }
     }
 
     .header {
@@ -147,5 +167,10 @@ body {
     100% {
         transform: rotate(0deg);
     }
+}
+
+::ng-deep .mat-tab-label {
+    font-family: 'Agency FB Bold', arial;
+    letter-spacing: 1px;
 }
 

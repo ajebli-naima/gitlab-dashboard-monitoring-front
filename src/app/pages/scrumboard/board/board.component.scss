@@ -1,6 +1,10 @@
 @import "src/@fuse/scss/fuse";
 @import url(https://fr.allfont.net/allfont.css?fonts=agency-fb);
-@import url(https://fr.allfont.net/allfont.css?fonts=agency-fb-bold);
+
+@font-face {
+    font-family: "Agency FB Bold";
+    src: url("../../../../assets/font/Agency FB Bold.ttf") format("truetype");
+}
 
 scrumboard-board {
     mat-sidenav-container {
