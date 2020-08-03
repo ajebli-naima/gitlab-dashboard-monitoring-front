@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {GitlabService} from "./gitlab.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {ScrumboardService} from "../scrumboard.service";
 import {MatDatepickerInputEvent, MatTabChangeEvent} from "@angular/material";
 
@@ -21,11 +21,9 @@ export class GitlabComponent implements OnInit {
     chart1: Chart;
     chart2: Chart;
 
-    branchSelected = new FormControl('', Validators.required);
     startDate;
     endDate;
 
-    branchs: any;
     idProject: any;
     commitsPerProjectAndBranch: any;
     statistics: any;
@@ -99,9 +97,7 @@ export class GitlabComponent implements OnInit {
 
 
         this._CommitUnitSubscription = this.gitlabService.findAllCommitsPerProjectAndBranchPerUnit(this.idProject.id,
-            this.branchSelected.value.name,
             this.startDate, this.endDate).subscribe(values => {
-
             this.statistics = values;
             let canvas = null;
             canvas = <HTMLCanvasElement>document.getElementById("chart2");
@@ -145,10 +141,9 @@ export class GitlabComponent implements OnInit {
 
         this._CommitUserSubscription = this.gitlabService
             .findAllCommitsPerProjectAndBranch(this.idProject.id,
-                this.branchSelected.value.name,
                 this.startDate, this.endDate)
             .subscribe(result => {
-                 this.commitsPerProjectAndBranch = result;
+                this.commitsPerProjectAndBranch = result;
                 //const entries = Object.entries(this.commitsPerProjectAndBranch.commitPerUser);
                 let data = this.generateArray(this.commitsPerProjectAndBranch.commitPerUser, 'canvas');
                 let labels = this.getLabels(data);
@@ -248,8 +243,8 @@ export class GitlabComponent implements OnInit {
     }
 
     tabChanged = (tabChangeEvent: MatTabChangeEvent): void => {
-        //console.log('tabChangeEvent => ', tabChangeEvent.tab.textLabel);
-        //console.log('index => ', tabChangeEvent.index);
+        console.log('tabChangeEvent => ', tabChangeEvent.tab.textLabel);
+        console.log('index => ', tabChangeEvent.index);
 
         if (this._CommitUnitSubscription) {
             this._CommitUnitSubscription.unsubscribe();
@@ -258,16 +253,13 @@ export class GitlabComponent implements OnInit {
         if (this._CommitUserSubscription) {
             this._CommitUserSubscription.unsubscribe();
         }
+        let currentDate = new Date();
+        this.startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        this.endDate = currentDate;
         this.commitsPerProjectAndBranch = null;
         this.statistics = null;
         this.idProject = this.projects.find(x => x.name === tabChangeEvent.tab.textLabel);
-        this.gitlabService.findAllBranchsPerProjectId(this.idProject.id).subscribe(branchs => {
-            this.branchs = branchs;
-            this.startDate = null;
-            this.endDate = null;
-            this.branchSelected.setValue(branchs[0]);
-            this.loadCommit();
-        });
+        this.loadCommit();
     }
 
     addEventStart(input: string, $event: MatDatepickerInputEvent<any>) {

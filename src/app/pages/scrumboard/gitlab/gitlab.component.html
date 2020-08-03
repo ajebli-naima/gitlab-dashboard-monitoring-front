@@ -47,18 +47,6 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
                                 <div class="row">
-                                    <mat-form-field appearance="outline" class="mr-sm-12" fxFlex="">
-                                        <mat-label>Branch</mat-label>
-                                        <mat-select [formControl]="branchSelected" required
-                                                    (selectionChange)="onBranchChange()">
-                                            <mat-option *ngFor="let branch of branchs" [value]="branch">
-                                                {{branch.name}}
-                                            </mat-option>
-                                        </mat-select>
-                                        <mat-error *ngIf="branchSelected.hasError('required')">Please choose a branch
-                                        </mat-error>
-                                    </mat-form-field>
-
                                     <mat-form-field appearance="outline" class="mr-sm-12" fxFlex>
                                         <mat-label>From</mat-label>
                                         <input matInput [(ngModel)]="startDate" name="startDate"
