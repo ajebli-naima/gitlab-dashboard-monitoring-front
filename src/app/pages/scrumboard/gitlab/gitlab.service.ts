@@ -19,19 +19,19 @@ export class GitlabService {
         return this._httpClient.get(AppUtils.BACKEND_API_PATH + '/gitlab/projects/' + idProject);
     }
 
-    findAllCommitsPerProjectAndBranchPerUnit(idProject, nameBranch, dateStart, dateEnd): Observable<any> {
+    findAllCommitsPerProjectAndBranchPerUnit(idProject, dateStart, dateEnd): Observable<any> {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
         let options = {headers: headers};
-        let filter: RequestFilter = this.critereFilterFactory(idProject, nameBranch, dateStart, dateEnd);
+        let filter: RequestFilter = this.critereFilterFactory(idProject, dateStart, dateEnd);
         return this._httpClient.post(AppUtils.BACKEND_API_PATH + '/gitlab/commits/unit', filter, options);
     }
 
-    findAllCommitsPerProjectAndBranch(idProject, nameBranch, dateStart, dateEnd): Observable<any> {
+    findAllCommitsPerProjectAndBranch(idProject, dateStart, dateEnd): Observable<any> {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
         let options = {headers: headers};
-        let filter: RequestFilter = this.critereFilterFactory(idProject, nameBranch, dateStart, dateEnd);
+        let filter: RequestFilter = this.critereFilterFactory(idProject, dateStart, dateEnd);
         return this._httpClient.post(AppUtils.BACKEND_API_PATH + '/gitlab/commits', filter, options);
     }
 
@@ -44,10 +44,9 @@ export class GitlabService {
         return this._httpClient.get(AppUtils.BACKEND_API_PATH + '/gitlab/branchs/path/' + idProject);
     }
 
-    private critereFilterFactory(idProject: any, idBranch: any, dateFrom: any, dateTo: any) {
+    private critereFilterFactory(idProject: any, dateFrom: any, dateTo: any) {
         const requestFilter: RequestFilter = {
             idProject: idProject,
-            idBranch: idBranch,
             dateFrom: dateFrom,
             dateTo: dateTo
         };
